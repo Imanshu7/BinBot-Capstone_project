@@ -7,7 +7,7 @@ import { getFirestore, collection, addDoc, doc, setDoc, getDoc, serverTimestamp 
 
 //Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCCl8jbZTOljw2IRgoWl2f5LA5jn47A4V8",
+  apiKey: "API_KEY",
   authDomain: "binbot-0.firebaseapp.com",
   projectId: "binbot-0",
   storageBucket: "binbot-0.firebasestorage.app",
