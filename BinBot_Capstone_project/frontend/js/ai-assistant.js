@@ -1,7 +1,7 @@
 (function initAIAssistant() {
   if (document.getElementById('ai-chat-window')) return; 
 
-  // HTML Structure - Settings and Key input removed
+  // HTML Structure
   const aiWidgetHtml = `
     <button id="ai-chat-toggle" aria-label="Toggle AI Assistant" class="fixed bottom-6 right-6 z-[9999] w-14 h-14 bg-white rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] hover:scale-105 hover:-translate-y-1 transition-all duration-300 ring-1 ring-white/10 group">
       <div class="relative w-full h-full flex items-center justify-center">
@@ -97,11 +97,11 @@
   // Smart URL detection
   const isLocal = window.location.hostname === 'localhost' || 
                   window.location.hostname === '127.0.0.1' || 
-                  window.location.protocol === 'file:'; // File protocol allow kiya
+                  window.location.protocol === 'file:'; // File protocol allow 
 
   const API_BASE = isLocal 
-    ? 'http://127.0.0.1:8000'  // Local Python Server (Uvicorn default port 8000)
-    : 'https://binbot-apis.onrender.com'; // Production Server
+    ? 'http://127.0.0.1:8000'  // Local Server
+    : 'https://binbot-apis.onrender.com'; // Main backend Server
 
   const container = document.createElement('div');
   container.className = "font-sans";
@@ -167,18 +167,18 @@
 
   if (fullscreenBtn) {
     fullscreenBtn.addEventListener('click', (e) => {
-      e.preventDefault();      // Default action roko
-      e.stopPropagation();     // Click ko close button tak jane se roko! (Crash Fix)
+      e.preventDefault();      // Default action
+      e.stopPropagation();     
       
       isFullscreenDesktop = !isFullscreenDesktop;
       
       if (isFullscreenDesktop) {
-        // Sirf ek class add karni hai (No Tailwind conflicts)
+        
         chatWindow.classList.add('wasti-fullscreen');
         fullscreenIcon.setAttribute('data-lucide', 'minimize');
         document.body.style.overflow = 'hidden'; 
       } else {
-        // Wahi class hata do, wapas normal ho jayega
+        
         chatWindow.classList.remove('wasti-fullscreen');
         fullscreenIcon.setAttribute('data-lucide', 'maximize');
         document.body.style.overflow = '';
