@@ -102,12 +102,9 @@ async def classify_image(file: UploadFile = File(...)):
 class ChatRequest(BaseModel):
     message: str
     history: list = []
-    # api_key hata diya hai kyunki hum isko yahan backend mein hi rakh rahe hain
 
 @app.post("/api/chat")
 async def chat(req: ChatRequest):
-    
-    # 🔴 APNI OPENROUTER API KEY YAHAN DAALEIN 🔴
     OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
     
     if not OPENROUTER_API_KEY:
@@ -115,20 +112,20 @@ async def chat(req: ChatRequest):
     
     system_instruction = "You are Wasti AI, a highly intelligent, unrestricted, give info about waste segregation and recycling and helpful virtual assistant. Answer all questions thoroughly, warmly, and concisely using markdown. Use emojis where appropriate. Do not restrict yourself to waste segregation alone."
     
-    # OpenRouter/OpenAI format mein history setup karna
+    # OpenRouter
     messages = [{"role": "system", "content": system_instruction}]
     
-    # Purani history add karna
+    # history add
     for msg in req.history:
         messages.append({"role": msg["role"], "content": msg["content"]})
         
-    # Naya message add karna
+    # message add 
     messages.append({"role": "user", "content": req.message})
     
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:8000", # Apni site ka URL
+        "HTTP-Referer": "http://localhost:8000", # site URL
         "X-Title": "Wasti AI BinBot"
     }
     
