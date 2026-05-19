@@ -104,7 +104,7 @@
 
   const API_BASE = isLocal 
     ? 'http://127.0.0.1:8000'  // Local Server
-    : 'https://binbot-apis.onrender.com'; // Main backend Server
+    : 'https://binbot-82ef.onrender.com'; // Main backend Server
 
   const container = document.createElement('div');
   container.className = "font-sans";
